@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!--    &lt;!&ndash; 引入 properties 文件，此后就可以在当前文件中使用 的方式访问 value &ndash;&gt;-->
+<!--    <properties resource="jdbc.properties"/>-->
+
+<!--    &lt;!&ndash;-->
+<!--    typeAliases：设置类型别名，即为某个具体的类型设置一个别名-->
+<!--    在 Mybatis 的范围中，就可以使用别名表示一个具体的类型-->
+<!--    &ndash;&gt;-->
+<!--    <typeAliases>-->
+<!--        &lt;!&ndash; type：设置需要起别名的类型 &ndash;&gt;-->
+<!--        &lt;!&ndash; alias：设置某个类型的别名 &ndash;&gt;-->
+<!--        &lt;!&ndash; <typeAlias type="com.mybatis.pojo.User" alias="abc"></typeAlias> &ndash;&gt;-->
+<!--        &lt;!&ndash; 若不设置 alias，当前的类型有默认的别名，即类名且不区分大小写 &ndash;&gt;-->
+<!--        &lt;!&ndash; <typeAlias type="com.mybatis.pojo.User"></typeAlias> &ndash;&gt;-->
+<!--        &lt;!&ndash; 通过包设置类型别名，指定包下所有的类型都全部拥有默认的别名，即类名且不区分大小写 &ndash;&gt;-->
+<!--        <package name="com.mybatis.pojo"/>-->
+<!--    </typeAliases>-->
+
+    <!--
+    environments：配置连接数据库的环境
+    属性：
+    default：设置默认使用的环境的 id
+    -->
+    <environments default="development">
+        <!--
+        environment：设置一个具体地连接数据库的环境
+        属性：
+        id：设置环境的唯一标识，不能重复
+        -->
+        <environment id="development">
+            <!--
+            transactionManager：设置事务管理器
+            属性：
+            type：设置事务管理器的方式
+            JDBC：表示使用JDBC中原生的事务管理方式
+            MANAGED：被管理，例如 Spring
+            -->
+            <transactionManager type="JDBC"/>
+            <!--
+            dataSource：设置数据源
+            属性：
+            type：设置数据源的类型
+            type="POOLED|UNPOOLED|JNDI"
+            POOLED：表示使用数据库连接池
+            UNPOOLED：表示不使用数据库连接池
+            JNDI：表示使用上下文的数据源
+            -->
+            <dataSource type="POOLED">
+                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
+                <!-- jdbc:mysql://localhost:3306/ssm?rewriteBatchedStatements=true -->
+                <property name="url" value="jdbc:mysql://localhost:3306/test?serverTimezone=UTC"/>
+                <property name="username" value="root"/>
+                <property name="password" value="040711"/>
+            </dataSource>
+        </environment>
+    </environments>
+    <!-- 引入 Mybatis 配置文件 -->
+    <mappers>
+         <mapper resource="mappers/UserMapper.xml"/>
+        <!--
+        以包的方式引入映射文件，但是必须满足两个条件：
+        1、mapper接口和映射文件所在的包必须一致
+        2、mapper接口的名字和映射文件的名字必须一致
+        -->
+<!--        <package name="com.mybatis.mapper"/>-->
+    </mappers>
+</configuration>
