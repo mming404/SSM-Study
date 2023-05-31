@@ -1,3 +1,4 @@
+import com.ysm.mybatis.mapper.SpecialSQLMapper;
 import com.ysm.mybatis.mapper.UserMapper;
 import com.ysm.mybatis.pojo.User;
 import com.ysm.mybatis.utils.SqlSessionUtil;
@@ -93,6 +94,25 @@ public class MybatisTest {
         final SqlSession sqlSession = SqlSessionUtil.getSqlSession();
         final UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         final Map<String, Object> user = userMapper.getUserById2(8);
+        System.out.println(user);
+        sqlSession.close();
+    }
+
+    @Test
+    public void testSelectUserByLike(){
+        final SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        final SpecialSQLMapper specialSQLMapper = sqlSession.getMapper(SpecialSQLMapper.class);
+        final List<User> users = specialSQLMapper.getUserLike("m");
+        users.forEach(System.out::println);
+        sqlSession.close();
+    }
+
+    @Test
+    public void testAddUserGetKey(){
+        final SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        final SpecialSQLMapper specialSQLMapper = sqlSession.getMapper(SpecialSQLMapper.class);
+        final User user = new User(null, "原神高手ysm");
+        specialSQLMapper.insertUserGetKey(user);
         System.out.println(user);
         sqlSession.close();
     }

@@ -8,6 +8,10 @@
     <!--    <properties resource="jdbc.properties"/>-->
     <properties resource="jdbc.properties"/>
 
+    <!--    下划线映射为Java的驼峰-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
     <!--    起别名方便使用-->
     <typeAliases>
         <typeAlias type="com.ysm.mybatis.pojo.User" alias="User"/>
@@ -66,7 +70,7 @@
     </environments>
     <!-- 引入 Mybatis 配置文件 -->
     <mappers>
-<!--        <mapper resource="mappers/UserMapper.xml"/>-->
+        <!--        <mapper resource="mappers/UserMapper.xml"/>-->
         <!--
         以包的方式引入映射文件，但是必须满足两个条件：
         1、mapper接口和映射文件所在的包必须一致
