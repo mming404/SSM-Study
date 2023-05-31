@@ -61,4 +61,21 @@ public class MybatisTest {
         sqlSession.close();
     }
 
+    @Test
+    public void testSelectUserByName(){
+        final SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        final UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        final User user = userMapper.getUserByName("ysm");
+        System.out.println(user);
+        sqlSession.close();
+    }
+
+    @Test
+    public void testAddUser(){
+        final SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        final UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        System.out.println(userMapper.addUser(new User(null, "原神高手")));
+        sqlSession.close();
+    }
+
 }

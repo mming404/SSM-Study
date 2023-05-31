@@ -23,4 +23,11 @@
     <select id="listAllUser" resultType="User">
         select * from user;
     </select>
+    <select id="getUserByName" resultType="User">
+        select * from user where name=#{name};
+    </select>
+
+    <insert id="addUser">
+        insert into user values(null,#{name});
+    </insert>
 </mapper>
