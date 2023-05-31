@@ -5,6 +5,22 @@
 
 <mapper namespace="com.ysm.mybatis.mapper.UserMapper">
     <insert id="insertUser">
-        insert into user values(null,'Hello mybatis');
+        insert into user values(null,'Hello ysm1');
     </insert>
+    <update id="updateUser">
+        update user set name="杨思铭原神" where id=8;
+    </update>
+    <delete id="deleteUser">
+        delete from user where id=10;
+    </delete>
+
+<!--     resultType 设置结果类型 转为Java类型-->
+<!--    resultMap 自定义映射，处理一对多或多对一的映射关系-->
+    <select id="getUserById" resultType="com.ysm.mybatis.pojo.User">
+        select * from user where id=8;
+    </select>
+
+    <select id="listAllUser" resultType="com.ysm.mybatis.pojo.User">
+        select * from user;
+    </select>
 </mapper>
