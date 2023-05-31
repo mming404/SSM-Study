@@ -14,8 +14,8 @@
         delete from user where id=10;
     </delete>
 
-<!--     resultType 设置结果类型 转为Java类型-->
-<!--    resultMap 自定义映射，处理一对多或多对一的映射关系-->
+    <!--     resultType 设置结果类型 转为Java类型-->
+    <!--    resultMap 自定义映射，处理一对多或多对一的映射关系-->
     <select id="getUserById" resultType="User">
         select * from user where id=8;
     </select>
@@ -30,4 +30,13 @@
     <insert id="addUser">
         insert into user values(null,#{name});
     </insert>
+
+    <!--    -->
+    <select id="getUsersCount" resultType="Integer">
+        select count(*) from user;
+    </select>
+
+    <select id="getUserById2" resultType="map">
+        select * from user where id=#{id};
+    </select>
 </mapper>

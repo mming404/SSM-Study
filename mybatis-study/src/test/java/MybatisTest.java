@@ -10,6 +10,7 @@ import org.junit.Test;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 public class MybatisTest {
 
@@ -78,4 +79,21 @@ public class MybatisTest {
         sqlSession.close();
     }
 
+
+    @Test
+    public void testAddUsersCount(){
+        final SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        final UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        System.out.println(userMapper.getUsersCount());
+        sqlSession.close();
+    }
+
+    @Test
+    public void testSelectUserToMap(){
+        final SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        final UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+        final Map<String, Object> user = userMapper.getUserById2(8);
+        System.out.println(user);
+        sqlSession.close();
+    }
 }
