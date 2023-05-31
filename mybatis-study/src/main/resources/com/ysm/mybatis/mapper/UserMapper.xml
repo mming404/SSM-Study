@@ -16,11 +16,11 @@
 
 <!--     resultType 设置结果类型 转为Java类型-->
 <!--    resultMap 自定义映射，处理一对多或多对一的映射关系-->
-    <select id="getUserById" resultType="com.ysm.mybatis.pojo.User">
+    <select id="getUserById" resultType="User">
         select * from user where id=8;
     </select>
 
-    <select id="listAllUser" resultType="com.ysm.mybatis.pojo.User">
+    <select id="listAllUser" resultType="User">
         select * from user;
     </select>
 </mapper>
