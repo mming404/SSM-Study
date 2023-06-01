@@ -71,6 +71,10 @@ public class MybatisTest {
         final UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
         final User user = userMapper.getUserByName("ysm");
         System.out.println(user);
+//        sqlSession.clearCache();
+        final User user1 = userMapper.getUserByName("ysm");
+
+        System.out.println(user1);
         sqlSession.close();
     }
 

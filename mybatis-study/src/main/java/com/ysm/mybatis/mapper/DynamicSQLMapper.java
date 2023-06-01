@@ -13,5 +13,9 @@ public interface DynamicSQLMapper {
      */
     void insertMoreUser(@Param("users") List<User> users);
 
+
+    /**
+     * 批量删除
+     */
     void deleteMoreUser(@Param("userIds") Integer[] userIds);
 }
