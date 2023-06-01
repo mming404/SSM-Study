@@ -11,6 +11,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -121,8 +122,36 @@ public class MybatisTest {
     public void testGetUserByCondition(){
         final SqlSession sqlSession = SqlSessionUtil.getSqlSession();
         final DynamicSQLMapper dynamicSQLMapper = sqlSession.getMapper(DynamicSQLMapper.class);
-        final List<User> users = dynamicSQLMapper.getUserByCondition(new User(3, "ysm"));
+        final List<User> users = dynamicSQLMapper.getUserByCondition(new User(null, ""));
         users.forEach(System.out::println);
+        sqlSession.close();
+    }
+
+    /**
+     * 测试批量插入
+     */
+    @Test
+    public void testInsertMoreUser(){
+        final SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        final DynamicSQLMapper dynamicSQLMapper = sqlSession.getMapper(DynamicSQLMapper.class);
+        final ArrayList<User> users = new ArrayList<>();
+        users.add(new User(null,"ysm11"));
+        users.add(new User(null,"ysm12"));
+        users.add(new User(null,"ysm13"));
+        dynamicSQLMapper.insertMoreUser(users);
+        users.forEach(System.out::println);
+        sqlSession.close();
+    }
+
+    /**
+     * 测试批量删除
+     */
+    @Test
+    public void testDeleteMoreUser(){
+        final SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        final DynamicSQLMapper dynamicSQLMapper = sqlSession.getMapper(DynamicSQLMapper.class);
+        dynamicSQLMapper.deleteMoreUser(new Integer[]{13,14,15});
+
         sqlSession.close();
     }
 }

@@ -5,12 +5,31 @@
 
 <mapper namespace="com.ysm.mybatis.mapper.DynamicSQLMapper">
     <select id="getUserByCondition" resultType="User">
-        select * from user where
-        <if test="name != null and name != ''">
-            name = #{name}
-        </if>
-        <if test="id != null">
-            and id = #{id}
-        </if>
+        select * from user
+        <where>
+            <if test="name != null and name != ''">
+                name = #{name}
+            </if>
+            <if test="id != null">
+                and id = #{id}
+            </if>
+        </where>
     </select>
+
+    <!--    使用foreach批量添加-->
+    <insert id="insertMoreUser">
+        insert into user values
+        <foreach collection="users" item="user" separator=",">
+            (null,#{user.name})
+        </foreach>
+    </insert>
+
+    <delete id="deleteMoreUser">
+        delete from user where id in
+        (
+            <foreach collection="userIds" item="userId" separator=",">
+                #{userId}
+            </foreach>
+        )
+    </delete>
 </mapper>
