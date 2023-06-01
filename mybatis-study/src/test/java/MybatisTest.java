@@ -1,3 +1,4 @@
+import com.ysm.mybatis.mapper.DynamicSQLMapper;
 import com.ysm.mybatis.mapper.SpecialSQLMapper;
 import com.ysm.mybatis.mapper.UserMapper;
 import com.ysm.mybatis.pojo.User;
@@ -114,6 +115,14 @@ public class MybatisTest {
         final User user = new User(null, "原神高手ysm");
         specialSQLMapper.insertUserGetKey(user);
         System.out.println(user);
+        sqlSession.close();
+    }
+    @Test
+    public void testGetUserByCondition(){
+        final SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        final DynamicSQLMapper dynamicSQLMapper = sqlSession.getMapper(DynamicSQLMapper.class);
+        final List<User> users = dynamicSQLMapper.getUserByCondition(new User(3, "ysm"));
+        users.forEach(System.out::println);
         sqlSession.close();
     }
 }
