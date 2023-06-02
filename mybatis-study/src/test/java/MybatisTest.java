@@ -1,3 +1,4 @@
+import com.github.pagehelper.PageHelper;
 import com.ysm.mybatis.mapper.DynamicSQLMapper;
 import com.ysm.mybatis.mapper.SpecialSQLMapper;
 import com.ysm.mybatis.mapper.UserMapper;
@@ -156,6 +157,19 @@ public class MybatisTest {
         final DynamicSQLMapper dynamicSQLMapper = sqlSession.getMapper(DynamicSQLMapper.class);
         dynamicSQLMapper.deleteMoreUser(new Integer[]{13,14,15});
 
+        sqlSession.close();
+    }
+
+    /**
+     * 测试分页查询
+     */
+    @Test
+    public void testPage(){
+        final SqlSession sqlSession = SqlSessionUtil.getSqlSession();
+        final UserMapper userMapper = sqlSession.getMapper(UserMapper.class);
+//        PageHelper.startPage(1,4);
+        final List<User> users = userMapper.listAllUser();
+        users.forEach(System.out::println);
         sqlSession.close();
     }
 }
