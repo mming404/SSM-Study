@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <bean id="user" class="com.ysm.spring.pojo.User"/>
+
+    <bean id="vipUser" class="com.ysm.spring.pojo.VipUser">
+        <!--        级联 使用并不多-->
+        <!--        <property name="user" ref="user"></property>-->
+        <!--        <property name="user.id" value="1"></property>-->
+        <!--        <property name="user.name" value="杨思铭"></property>-->
+
+        <!--        构造器注入-->
+        <!--        <constructor-arg name="user" ref="user"></constructor-arg>-->
+
+        <!--        内部bean-->
+        <property name="user">
+            <bean id="userInner" class="com.ysm.spring.pojo.User">
+                <property name="id" value="2"></property>
+                <property name="name" value="原神"></property>
+            </bean>
+        </property>
+
+        <!--        list成员-->
+        <!--        或者引用创建的list util-->
+        <property name="users" ref="userList">
+
+            <!--            直接使用list-->
+            <!--            <list >-->
+            <!--                <ref bean="user"></ref>-->
+            <!--                <ref bean="user"></ref>-->
+            <!--                <ref bean="user"></ref>-->
+            <!--                <ref bean="user"></ref>-->
+            <!--            </list>-->
+        </property>
+
+    </bean>
+
+    <!--    创建util list 使用可以直接引用id-->
+    <util:list id="userList">
+        <ref bean="user"></ref>
+        <ref bean="user"></ref>
+        <ref bean="user"></ref>
+        <ref bean="user"></ref>
+        <ref bean="user"></ref>
+    </util:list>
+
+</beans>
