@@ -13,19 +13,29 @@
 
 
     <dependencies>
-    <!-- 基于Maven依赖传递性，导入spring-context依赖即可导入当前所需所有jar包 -->
-    <dependency>
-        <groupId>org.springframework</groupId>
-        <artifactId>spring-context</artifactId>
-        <version>5.3.1</version>
-    </dependency>
-    <!-- junit测试 -->
-    <dependency>
-    <groupId>junit</groupId>
-    <artifactId>junit</artifactId>
-        <version>4.12</version>
-        <scope>test</scope>
-    </dependency>
+        <!-- 基于Maven依赖传递性，导入spring-context依赖即可导入当前所需所有jar包 -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>5.3.1</version>
+        </dependency>
+        <!-- junit测试 -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.12</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.31</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>druid</artifactId>
+            <version>1.2.10</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -56,6 +66,7 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <version>8.0.31</version>
                     </dependency>
+
                 </dependencies>
                 <configuration>
                     <overwrite>true</overwrite>
