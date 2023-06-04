@@ -1,5 +1,9 @@
 package com.ysm.spring.pojo;
 
+
+import org.springframework.stereotype.Component;
+
+@Component
 public class User {
 
     private Integer id;

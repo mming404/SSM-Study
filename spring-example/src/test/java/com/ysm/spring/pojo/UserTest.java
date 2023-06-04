@@ -36,4 +36,14 @@ public class UserTest {
 
         System.out.println(dataSource.getConnectCount());
     }
+
+    @Test
+    public void testIOCByAnnotation() throws SQLException {
+        ApplicationContext ioc = new ClassPathXmlApplicationContext("applicationContext.xml");
+//        User user = (User) ioc.getBean("user");
+//
+        final VipUser vipUser = ioc.getBean(VipUser.class);
+        System.out.println(vipUser.getUser().toString());
+
+    }
 }

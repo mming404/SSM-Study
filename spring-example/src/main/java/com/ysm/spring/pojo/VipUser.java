@@ -1,16 +1,21 @@
 package com.ysm.spring.pojo;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Map;
 
+@Component
 public class VipUser {
+
+    // 属性注入 建议使用set注入
+    @Autowired
     private User user;
 
     private List<User> users;
 
-    private Map<String,User> userMap;
-
-
+    private Map<String, User> userMap;
 
 
     public VipUser() {
@@ -52,6 +57,7 @@ public class VipUser {
     }
 
     //set注入
+//    @Autowired
     public void setUser(User user) {
         this.user = user;
     }
