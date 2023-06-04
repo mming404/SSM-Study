@@ -13,6 +13,7 @@
         <module>mybatis-mbg</module>
         <module>spring-example</module>
         <module>spring-AOP</module>
+        <module>spring-transaction</module>
     </modules>
     <build>
         <plugins>

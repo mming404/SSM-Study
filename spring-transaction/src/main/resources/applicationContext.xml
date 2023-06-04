@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop https://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/tool http://www.springframework.org/schema/tool/spring-tool.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+
+    <context:property-placeholder location="jdbc.properties"></context:property-placeholder>
+
+    <bean class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="druidDataSource"></property>
+    </bean>
+    <!--    <bean id="user" class="com.ysm.spring.pojo.User"/>-->
+
+    <!--    <bean id="vipUser" class="com.ysm.spring.pojo.VipUser">-->
+    <!--        &lt;!&ndash;        级联 使用并不多&ndash;&gt;-->
+    <!--        &lt;!&ndash;        <property name="user" ref="user"></property>&ndash;&gt;-->
+    <!--        &lt;!&ndash;        <property name="user.id" value="1"></property>&ndash;&gt;-->
+    <!--        &lt;!&ndash;        <property name="user.name" value="杨思铭"></property>&ndash;&gt;-->
+
+    <!--        &lt;!&ndash;        构造器注入&ndash;&gt;-->
+    <!--        &lt;!&ndash;        <constructor-arg name="user" ref="user"></constructor-arg>&ndash;&gt;-->
+
+    <!--        &lt;!&ndash;        内部bean&ndash;&gt;-->
+    <!--        <property name="user">-->
+    <!--            <bean id="userInner" class="com.ysm.spring.pojo.User">-->
+    <!--                <property name="id" value="2"></property>-->
+    <!--                <property name="name" value="原神"></property>-->
+    <!--            </bean>-->
+    <!--        </property>-->
+
+    <!--        &lt;!&ndash;        list成员&ndash;&gt;-->
+    <!--        &lt;!&ndash;        或者引用创建的list util&ndash;&gt;-->
+    <!--        <property name="users" ref="userList">-->
+
+    <!--            &lt;!&ndash;            直接使用list&ndash;&gt;-->
+    <!--            &lt;!&ndash;            <list >&ndash;&gt;-->
+    <!--            &lt;!&ndash;                <ref bean="user"></ref>&ndash;&gt;-->
+    <!--            &lt;!&ndash;                <ref bean="user"></ref>&ndash;&gt;-->
+    <!--            &lt;!&ndash;                <ref bean="user"></ref>&ndash;&gt;-->
+    <!--            &lt;!&ndash;                <ref bean="user"></ref>&ndash;&gt;-->
+    <!--            &lt;!&ndash;            </list>&ndash;&gt;-->
+    <!--        </property>-->
+
+    <!--        &lt;!&ndash;        map成员&ndash;&gt;-->
+    <!--        <property name="userMap">-->
+    <!--            <map>-->
+    <!--                <entry key="1" value-ref="user"></entry>-->
+    <!--                <entry key="2" value-ref="user"></entry>-->
+    <!--            </map>-->
+    <!--        </property>-->
+
+    <!--    </bean>-->
+
+    <bean id="druidDataSource" class="com.alibaba.druid.pool.DruidDataSource">
+        <property name="driverClassName" value="${jdbc.driver}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <!--    &lt;!&ndash;    创建util list 使用可以直接引用id&ndash;&gt;-->
+    <!--    <util:list id="userList">-->
+    <!--        <ref bean="user"></ref>-->
+    <!--        <ref bean="user"></ref>-->
+    <!--        <ref bean="user"></ref>-->
+    <!--        <ref bean="user"></ref>-->
+    <!--        <ref bean="user"></ref>-->
+    <!--    </util:list>-->
+
+
+    <!--    扫描组件  -->
+    <!--    <context:component-scan base-package="com.ysm.springAOP"></context:component-scan>-->
+
+    <!--    开启基于注解的aop功能-->
+    <aop:aspectj-autoproxy/>
+
+    <!--    配置事务管理器-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="druidDataSource"/>
+    </bean>
+
+    <!--    开启注解事务-->
+    <tx:annotation-driven transaction-manager="transactionManager"></tx:annotation-driven>
+
+
+</beans>
