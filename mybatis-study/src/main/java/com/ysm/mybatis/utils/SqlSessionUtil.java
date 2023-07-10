@@ -25,6 +25,7 @@ public class SqlSessionUtil {
         }
 
         System.out.println("hello");
+        System.out.println("这是主分支");
         return sqlSession;
     }
 }
