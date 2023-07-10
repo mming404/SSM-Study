@@ -23,6 +23,8 @@ public class SqlSessionUtil {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        System.out.println("hello");
         return sqlSession;
     }
 }
