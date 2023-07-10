@@ -25,6 +25,7 @@ public class SqlSessionUtil {
         }
 
         System.out.println("hello");
+        System.out.println("这是div分支测试");
         return sqlSession;
     }
 }
